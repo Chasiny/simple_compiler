@@ -1,7 +1,7 @@
 package gramma_analysis
 
 import (
-	"Compiler/utils/data_structure/queue"
+	"github.com/Chasiny/simple_compiler/utils/data_structure/queue"
 	"fmt"
 	"testing"
 )
@@ -91,7 +91,7 @@ E'->i`)
 		fmt.Println(err)
 	}
 
-	_, _, ok := ll1.Analysis("vi#")
+	_, _, ok := ll1.Analysis("v=i#")
 	if !ok {
 		t.Fatalf("no ok")
 	}
