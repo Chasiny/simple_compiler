@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>语法分析器-LL1</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+</head>
+
+<style>
+    .c_box {
+        width: 300px;
+        height: 400px;
+        overflow-y: scroll;
+    }
+
+    .input_box {
+        width: 100%;
+        height: 35%;
+    }
+
+    .box_inline {
+        width: 20%;
+        display: inline-block;
+        margin: 20px;
+    }
+</style>
+
+<body>
+<div id="app" style="text-align: center">
+    <div align="center">
+        <h1 id="title" style="font-size: 30px;color: cornflowerblue;margin-top: 20px">
+            语法分析器-LL1
+        </h1>
+
+
+        <div class="box_inline">
+            <div id="set" class="c_box">
+            <span style="color: cornflowerblue;">请输入文法:</span>
+            <textarea v-model="grammar" placeholder="请输入文法" class="input_box"></textarea
+            <span style="color: cornflowerblue;">请输入分析串:</span>
+            <textarea v-model="inputdata" placeholder="请输入文法" class="input_box"></textarea>
+            <button v-on:click="submitGrammar" type="button" class="btn btn-outline-primary" style="">提交</button>
+            </div>
+        </div>
+
+
+        <div class="box_inline">
+            <span style="color: cornflowerblue;">First集合:</span>
+            <div id="set" class="c_box">
+                <li class="list-group-item" v-for="item in first">{{ item }}</li>
+            </div>
+        </div>
+
+        <div class="box_inline">
+            <span style="color: cornflowerblue;">Follow集合:</span>
+            <div id="set" class="c_box">
+                <li class="list-group-item" v-for="item in follow">{{ item }}</li>
+            </div>
+        </div>
+
+        <div class="box_inline">
+            <span style="color: cornflowerblue;">语法树:</span>
+            <div id="set" class="c_box">
+                <li class="list-group-item" v-for="item in tree">{{ item }}</li>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 20px;">
+        <div class="box_inline">
+            <span style="color: cornflowerblue;">分析表:</span>
+            <table align="center">
+                <tr v-for="arow in analysistable">
+                    <td v-for="adata in arow" style="width: 90px;height: 50px;border: 2px solid cornflowerblue;">
+                    {{ adata }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="box_inline">
+            <span style="color: cornflowerblue;">分析过程:</span>
+            <table align="center">
+                <tr v-for="arow in analysis">
+                    <td v-for="adata in arow" style="width: 150px;height: 50px;border: 2px solid cornflowerblue;">
+                    {{ adata }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            grammar: 'E->TE\'\n' +
+            'E\'->+TE\'|@\n' +
+            'T->FT\'\n' +
+            'T\'->*FT\'|@\n' +
+            'F->(E)|i',
+            host: '/api/grammar',
+            first: [],
+            follow: [],
+            analysistable: [],
+            analysis: [],
+            tree: [],
+            inputdata: `i+i*i#`,
+        },
+        methods: {
+            submitGrammar: function () {
+                var xhr = new XMLHttpRequest()
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            var json = eval('(' + xhr.response + ')');
+                            this.first = json.first_set;
+                            this.follow = json.follow_set;
+                            this.analysistable = json.analysis_table;
+                            this.tree = json.tree;
+                            this.analysis = json.analysis;
+                            if(!json.analysis_ok){
+                                alert('匹配失败');
+                            }
+                        } else {
+
+                        }
+                    }
+                };
+                xhr.open('POST', this.host, true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.send('grammar=' + encodeURIComponent(this.grammar) + '&' + 'inputdata='
+                        + encodeURIComponent(this.inputdata));
+            }
+        }
+    });
+
+</script>
+</body>
+
+</html>
