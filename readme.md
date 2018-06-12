@@ -1,4 +1,5 @@
 # Simple Compiler
+[![Build Status](https://travis-ci.org/Chasiny/simple_compiler.svg?branch=master)](https://travis-ci.org/Chasiny/simple_compiler)
 
 ## Run
 ```bash
