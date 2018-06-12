@@ -1,7 +1,7 @@
 package server
 
 import (
-	"Compiler/simple_compiler"
+	"github.com/Chasiny/simple_compiler/simple_compiler"
 	"encoding/json"
 	"fmt"
 	"log"

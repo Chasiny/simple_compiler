@@ -1,7 +1,7 @@
 package main
 
 import (
-	"Compiler/server"
+	"github.com/Chasiny/simple_compiler/server"
 )
 
 func main() {

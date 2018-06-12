@@ -1,8 +1,8 @@
 package server
 
 import (
-	"Compiler/gramma_analysis"
-	"Compiler/utils/data_structure/queue"
+	"github.com/Chasiny/simple_compiler/gramma_analysis"
+	"github.com/Chasiny/simple_compiler/utils/data_structure/queue"
 	"encoding/json"
 	"fmt"
 	"log"

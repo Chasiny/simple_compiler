@@ -1,8 +1,8 @@
 package simple_compiler
 
 import (
-	"Compiler/gramma_analysis"
-	"Compiler/lexical_analysis"
+	"github.com/Chasiny/simple_compiler/gramma_analysis"
+	"github.com/Chasiny/simple_compiler/lexical_analysis"
 	"fmt"
 	"strconv"
 )

@@ -1,7 +1,7 @@
 package server
 
 import (
-	"Compiler/lexical_analysis"
+	"github.com/Chasiny/simple_compiler/lexical_analysis"
 	"encoding/json"
 	"log"
 	"net/http"

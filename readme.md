@@ -1,11 +1,18 @@
 # Simple Compiler
 
+## Run
+```bash
+go get github.com/Chasiny/simple_compiler
+cd $GOPATH/Chasiny/simple_compiler
+go run main.go
+```
+
 ![Lexical analysis](./image/01.png)
 
 ## Lexical analysis
 
 prase regexp to nfa, and convert nfa to dfa,   
-input the program and output its words.
+input the program and output its words.   
 The effect is as follows:
 
 ![Lexical analysis](./image/02.png)

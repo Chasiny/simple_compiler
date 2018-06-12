@@ -1,8 +1,8 @@
 package lexical_analysis
 
 import (
-	"Compiler/utils/data_structure/queue"
-	"Compiler/utils/data_structure/vector"
+	"github.com/Chasiny/simple_compiler/utils/data_structure/queue"
+	"github.com/Chasiny/simple_compiler/utils/data_structure/vector"
 	"container/list"
 )
 

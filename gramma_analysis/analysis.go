@@ -1,7 +1,7 @@
 package gramma_analysis
 
 import (
-	"Compiler/utils/data_structure/stack"
+	"github.com/Chasiny/simple_compiler/utils/data_structure/stack"
 	"fmt"
 )
 
