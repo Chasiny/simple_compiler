@@ -4,7 +4,7 @@
 ## Run
 ```bash
 go get github.com/Chasiny/simple_compiler
-cd $GOPATH/Chasiny/simple_compiler
+cd $GOPATH/src/github.com/Chasiny/simple_compiler
 go run main.go
 ```
 
